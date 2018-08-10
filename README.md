@@ -8,6 +8,7 @@ For this homework you'll be using the Open Weather API. You're going to be using
 
 ```
 http://api.openweathermap.org/data/2.5/weather?q=10025,us?units=imperial&appid=[PUT YOUR API KEY HERE]
+```
 
 ## 🚀 Completion looks like:
 
@@ -18,18 +19,10 @@ Your app has multiple components and does the following things:
 - Parses the information that comes back from the API call
 - Renders that information on the page
 - **BONUS**: Include the sunrise and sunset times (hint: maybe [Moment.js](https://momentjs.com/) will be helpful!) and some information about humidity, atmospheric pressure, etc.
-- **BONUS**: Upload your completed weather app to BitBalloon.
+- **BONUS**: Deploy your app on GH-pages.
 
 Things to think about:
 
 - Should your app have state?
 - How/when would you change state?
 - What way will you make the API call?
-
-
-## 🚀 Your homework submission should include:
-
-- An issue ticket created on the repo `ada-students` [here](https://git.generalassemb.ly/nyc-wdi-ada/ada-students/issues/new)
-- A link to your fork of this repository
-- Completion, comfort, wins, losses, questions... you know the drill.
-
