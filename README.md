@@ -8,8 +8,7 @@ For this homework you'll be using the Open Weather API. You're going to be using
 2. Sign up for a free [Open Weather Map](https://home.openweathermap.org/users/sign_up) account!
 3. Once you've signed up, you're given an [API key](https://home.openweathermap.org/api_keys). Copy that API key and keep track of it somewhere!
 4. Take a look at the API docs. All APIs are different so you need to study the documentation to see what the endpoints look like and what you will get back. 
-5. Open Postman to check out the data you're working with & to verify that your key works. Make a GET request to the following URL in postman, adding your API key to the end.
-5. Paste the URL into your browser to check out the data you're woking with and to verify that your key works. You can use a [Chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) to format the JSON response.  
+5. Paste the URL into your browser to check out the data you're woking with and to verify that your key works. You can use a [Chrome extension](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) to format the JSON response.  Alternatively, you can use an app like [Postman](https://www.getpostman.com/) to make a GET request.
 <details>
   <summary>Click this arrow if you want to see what your URL should look like.</summary>
   
