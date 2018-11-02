@@ -28,6 +28,10 @@ Your app has multiple components and does the following things:
 - **BONUS**: Include the sunrise and sunset times (hint: maybe [Moment.js](https://momentjs.com/) will be helpful!) and some information about humidity, atmospheric pressure, etc.
 - **BONUS**: Deploy your app on GH-pages (check the Create React App docs).
 
+## 🚀 Submission:
+
+ A pull request on this repo by 11:00pm Sunday night. 
+
 ### To be thinking on
 
 - What components should your app have?
