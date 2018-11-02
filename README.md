@@ -35,6 +35,7 @@ Your app has multiple components and does the following things:
 
 ### To be thinking on
 
+- Put a debugger into your HTTP request (axios call) to get a sense of what's happening. 
 - What components should your app have?
 - What components (if any) need state?
 - How/when would you change state?
