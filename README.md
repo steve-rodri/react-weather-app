@@ -23,10 +23,10 @@ Your app has multiple components and does the following things:
 - Parses the information that comes back from the API call
 - Renders that information on the page
 
+- **BONUS:** Create a `.env` file to hide your API key.
 - **BONUS**: Include a button that converts the temperature from Fahrenheit to Celsius
 - **BONUS**: Change the styling of the page based on weather conditions. 
 - **BONUS**: Include the sunrise and sunset times (hint: maybe [Moment.js](https://momentjs.com/) will be helpful!) and some information about humidity, atmospheric pressure, etc.
-- **BONUS:** Create a `.env` file to hide your API key.
 - **BONUS**: Deploy your app on GH-pages (check the Create React App docs).
 
 
