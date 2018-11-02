@@ -26,7 +26,7 @@ Your app has multiple components and does the following things:
 - Parses the information that comes back from the API call
 - Renders that information on the page
 - API key is hidden in a `.env` file: 
-```
+
 `touch` a `.env` file in the root of your `create-react-app`. Create an environment variable to store your API key. In order to work the name of your env variable must start with `REACT_APP` (ex, `REACT_APP_WEATHER_API_KEY`). Include the `.env` file in the `.gitignore` file included with your `create-react-app` so that the `.env` file doesn't get pushed up to Github. Now you can use the enviroment variable you created in your code with `process.env`. For example:
 
 ```
