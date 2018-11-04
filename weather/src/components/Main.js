@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
-
+import moment from 'moment'
+import tz from 'moment-timezone'
 class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
       unitIsFahrenheit: true,
     }
-    this.kelvinToCelsius = this.KelvinToCelsius.bind(this);
-    this.kelvinToFahrenheit = this.KelvinToFahrenheit.bind(this);
+    this.kelvinToCelsius = this.kelvinToCelsius.bind(this);
+    this.kelvinToFahrenheit = this.kelvinToFahrenheit.bind(this);
     this.dataAvail = this.dataAvail.bind(this);
     this.city = this.city.bind(this);
-    this.temp = this.Temp.bind(this);
+    this.temp = this.temp.bind(this);
     this.checkCondtion = this.checkCondition.bind(this);
     this.minMax = this.minMax.bind(this);
+    this.sunsetSunrise = this.sunsetSunrise.bind(this);
   }
 
   dataAvail(){
@@ -25,6 +27,19 @@ class Main extends Component {
     return (
       this.props.data.weather.name
     )
+  }
+
+
+
+  handleClick = (e) => {
+    this.setState({
+      unitIsFahrenheit: ! this.state.unitIsFahrenheit
+    })
+    // if (this.state.unitIsFahrenheit) {
+    //   e.innerText = "F"
+    // } else {
+    //   e.innerText = "C"
+    // }
   }
 
   kelvinToFahrenheit(temp) {
@@ -43,37 +58,64 @@ class Main extends Component {
     if (this.dataAvail()) {
       if (this.state.unitIsFahrenheit) {
         return (
-          Math.round(this.KelvinToFahrenheit(this.props.data.weather.main.temp))
+          Math.round(this.kelvinToFahrenheit(this.props.data.weather.main.temp))
         )
       } else {
         return (
-          Math.round(this.KelvinToCelsius(this.props.data.weather.main.temp))
+          Math.round(this.kelvinToCelsius(this.props.data.weather.main.temp))
         )
       }
     }
   }
 
   minMax(){
+    let min;
+    let max;
     if (this.dataAvail()) {
       if (this.state.unitIsFahrenheit) {
-        const min = Math.round(this.KelvinToFahrenheit(this.props.data.weather.main.temp_min))
-        const max = Math.round(this.KelvinToFahrenheit(this.props.data.weather.main.temp_max))
-        return (
-          <div className= "minMax">
-            <div id="min">
-              <h6>Min</h6>
-              <p>{min}</p>
-            </div>
-            <div id="max">
-              <h6>Max</h6>
-              <p>{max}</p>
-            </div>
-          </div>
-        )
+        min = Math.round(this.kelvinToFahrenheit(this.props.data.weather.main.temp_min))
+        max = Math.round(this.kelvinToFahrenheit(this.props.data.weather.main.temp_max))
+      }else {
+        min = Math.round(this.kelvinToCelsius(this.props.data.weather.main.temp_min))
+        max = Math.round(this.kelvinToCelsius(this.props.data.weather.main.temp_max))
       }
+      return (
+        <div className= "minMax">
+          <div id="min">
+            <h6>Min</h6>
+            <p>{min}</p>
+          </div>
+          <div id="max">
+            <h6>Max</h6>
+            <p>{max}</p>
+          </div>
+        </div>
+      )
+
     }
   }
 
+  sunsetSunrise(){
+    if (this.dataAvail()) {
+      const dateTimeSet = moment(this.props.data.weather.sys.sunset).format()
+      const dateTimeRise = moment(this.props.data.weather.sys.sunrise).format()
+      console.log(dateTimeSet)
+      const sunset = moment(dateTimeSet).format('LT')
+      const sunrise = moment(dateTimeRise).format('LT')
+      return (
+        <div className= "sunsetSunrise">
+          <div id="sunset">
+            <h6>Sunset</h6>
+            <p>{sunset}</p>
+          </div>
+          <div id="sunrise">
+            <h6>Sunrise</h6>
+            <p>{sunrise}</p>
+          </div>
+        </div>
+      )
+    }
+  }
   checkCondition () {
     if (this.dataAvail()) {
       const weather = this.props.data.weather.weather;
@@ -89,6 +131,10 @@ class Main extends Component {
     return(
       <div className="Main">
 
+        <button id="unitChange" onClick={this.handleClick}>
+          {this.state.unitIsFahrenheit? "C":"F"}
+        </button>
+
         <h4>{this.city()}</h4>
 
         <div className="temp">
@@ -98,6 +144,8 @@ class Main extends Component {
         <h5>{this.checkCondition()}</h5>
 
         {this.minMax()}
+
+        {this.sunsetSunrise()}
 
       </div>
     );
