@@ -1,14 +1,17 @@
 import axios from 'axios'
 
-async function getCurrentWeather(){
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+
+async function GetCurrentWeather(props){
   try {
-    const weatherReq = axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=11590&appid=${process.env.REACT_APP_WEATHER_API_KEY}`);
+    const weatherReq = axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zip}&appid=${API_KEY}`);
     const weatherResp = await weatherReq;
-    return weatherResp;
+    console.log(weatherResp);
+    return ( weatherResp.data )
 
   } catch (e) {
     console.log(e);
   }
 }
 
-export default getCurrentWeather();
+export default GetCurrentWeather

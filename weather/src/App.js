@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import weatherData from './services/data';
 import Search from './components/Search'
 import Main from './components/Main'
 
@@ -8,22 +7,15 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      zip: 0,
+      zip: '',
       weather: []
     }
   }
 
-async componentDidMount(){
-    const weather = await weatherData;
-    this.setState({
-      weather: weather
-    })
-    console.log(weather);
-  }
-
   handleChange = (e) =>{
     this.setState({
-      zip: e.zip
+      zip: e.zip,
+      weather: e.weather
     })
   }
 
