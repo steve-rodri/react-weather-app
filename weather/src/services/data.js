@@ -6,7 +6,6 @@ async function GetCurrentWeather(props){
   try {
     const weatherReq = axios.get(`http://api.openweathermap.org/data/2.5/weather?zip=${props.zip}&appid=${API_KEY}`);
     const weatherResp = await weatherReq;
-    console.log(weatherResp);
     return ( weatherResp.data )
 
   } catch (e) {

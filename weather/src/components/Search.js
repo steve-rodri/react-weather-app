@@ -40,7 +40,7 @@ class Search extends Component {
           value={this.state.zip}
           onChange={this.handleChange}
         />
-        <button type='submit'>Submit</button>
+        <button id="submit" type='submit'>Submit</button>
       </form>
       )
   }

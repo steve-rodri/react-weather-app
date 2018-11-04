@@ -12,9 +12,10 @@ class Main extends Component {
     this.dataAvail = this.dataAvail.bind(this);
     this.city = this.city.bind(this);
     this.temp = this.temp.bind(this);
-    this.checkCondtion = this.checkCondition.bind(this);
+    this.condtion = this.condition.bind(this);
     this.minMax = this.minMax.bind(this);
     this.sunsetSunrise = this.sunsetSunrise.bind(this);
+    this.background = this.background.bind(this);
   }
 
   dataAvail(){
@@ -81,13 +82,13 @@ class Main extends Component {
       }
       return (
         <div className= "minMax">
-          <div id="min">
-            <h6>Min</h6>
-            <p>{min}</p>
-          </div>
           <div id="max">
-            <h6>Max</h6>
+            <h6>High</h6>
             <p>{max}</p>
+          </div>
+          <div id="min">
+            <h6>Low</h6>
+            <p>{min}</p>
           </div>
         </div>
       )
@@ -99,7 +100,6 @@ class Main extends Component {
     if (this.dataAvail()) {
       const dateTimeSet = moment(this.props.data.weather.sys.sunset).format()
       const dateTimeRise = moment(this.props.data.weather.sys.sunrise).format()
-      console.log(dateTimeSet)
       const sunset = moment(dateTimeSet).format('LT')
       const sunrise = moment(dateTimeRise).format('LT')
       return (
@@ -116,36 +116,67 @@ class Main extends Component {
       )
     }
   }
-  checkCondition () {
+  condition () {
     if (this.dataAvail()) {
       const weather = this.props.data.weather.weather;
       const weatherCondition = weather[0];
+
       return (
-        weatherCondition.description
+        <h5 id="condition">{weatherCondition.description}</h5>
       )
     }
   }
 
+  background(){
+    if (this.dataAvail()) {
+      const weather = this.props.data.weather.weather;
+      const weatherCondition = weather[0];
+      let background;
+      switch (weatherCondition.main) {
+        case "Clear":
+          debugger;
+          background = "../images/clear_sky.jpeg"
+          break;
+        case "Rain":
+          background = "../images/rain.jpeg"
+          break;
+        case "Snow":
+          background = "../images/snow.jpeg"
+          break;
+        }
+
+      return (
+        <img src={background} id="background"/>
+      )
+    }
+  }
 
   render(){
     return(
       <div className="Main">
 
-        <button id="unitChange" onClick={this.handleClick}>
-          {this.state.unitIsFahrenheit? "C":"F"}
-        </button>
 
-        <h4>{this.city()}</h4>
+        {/* {this.background()} */}
 
-        <div className="temp">
-          {this.temp()}
+        <div className="grid">
+
+          <button id="unitChange" onClick={this.handleClick}>
+            {this.state.unitIsFahrenheit? "C":"F"}
+          </button>
+
+          <h4 id="city">{this.city()}</h4>
+
+          <div className="temp">
+            {this.temp()}
+          </div>
+
+          {this.condition()}
+
+          {this.minMax()}
+
+          {this.sunsetSunrise()}
+
         </div>
-
-        <h5>{this.checkCondition()}</h5>
-
-        {this.minMax()}
-
-        {this.sunsetSunrise()}
 
       </div>
     );

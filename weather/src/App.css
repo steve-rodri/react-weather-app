@@ -1,32 +1,115 @@
 .App {
   text-align: center;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+/* Search Component */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Search {
+  padding: 30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: lightblue;
 }
 
-.App-link {
-  color: #61dafb;
+input {
+  font-size: 20px;
+  font-family: sans-serif;
+  height: 6vh;
+  width: 25vh;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#submit {
+  height: 7vh;
+  width: 10vh;
+  border-radius: 0 4px 4px 0 ;
+  /* border-top: 2px solid white;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 0px; */
+  font-family: inherit;
+  font-size: 2vh;
+  font-weight: bold;
+  background: rgba(127,255,127,1);
+}
+
+#submit:hover {
+  cursor: pointer;
+}
+
+
+/*  Main component */
+
+#background {
+ z-index: -1;
+position: relative;
+
+}
+
+.grid {
+  border-top: 2px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: .25fr 1fr .25fr .75fr;
+  grid-template-areas:
+  "unitcity  unitcity"
+  "temp  temp"
+  "condition  condition"
+  "minMax  sun"
+  ;
+}
+
+
+#unitChange {
+  height: 10vh;
+  width: 10vh;
+  font-size: 4vh;
+  background: lightgreen;
+  grid-area: unitcity;
+  align-self: start;
+  justify-self: end;
+  border: 1px solid lightgreen;
+  border-radius: 0 0 0 7px;
+}
+
+#city {
+  grid-area: unitcity;
+  font-size: 3vh;
+  align-self: end;
+  margin: 0;
+}
+
+.temp {
+  grid-area: temp;
+  font-size: 15vh;
+  align-self: center;
+}
+
+#condition {
+  grid-area: condition;
+  font-size: 3vh;
+  align-self: start;
+  margin: 0;
+
+}
+
+.minMax {
+  grid-area: minMax;
+  display:flex;
+  justify-content: space-around;
+  align-items: start;
+  font-size: 2.5vh;
+}
+
+.sunsetSunrise {
+  grid-area: sun;
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  font-size: 2.5vh;
 }
