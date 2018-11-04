@@ -19,11 +19,13 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className="App">
         <Search onChange={this.handleChange}/>
-        <Main />
+        <Main data={this.state}/>
       </div>
     );
   }
