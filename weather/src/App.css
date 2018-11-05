@@ -19,14 +19,14 @@ input {
   font-size: 20px;
   font-family: sans-serif;
   height: 6vh;
-  width: 25vh;
+  width: 20vh;
   border-radius: 4px 0 0 4px;
   border: 2px solid white;
 }
 
 #submit {
   height: 7vh;
-  width: 13vh;
+  width: 10vh;
   border-radius: 0 4px 4px 0 ;
   /* border-top: 2px solid white;
   border-right: 2px solid white;
@@ -87,7 +87,13 @@ position: relative;
 .temp {
   grid-area: temp;
   font-size: 15vh;
-  align-self: center;
+  display:flex;
+  justify-content: center;
+}
+
+#cushion {
+  grid-area: temp;
+  padding-left: 15%;
 }
 
 #condition {
