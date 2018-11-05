@@ -95,22 +95,23 @@ class Main extends Component {
 
     }
   }
-
+ // =(A1-DATE(1970,1,1))*86400
   sunsetSunrise(){
     if (this.dataAvail()) {
-      const dateTimeSet = moment(this.props.data.weather.sys.sunset).format()
-      const dateTimeRise = moment(this.props.data.weather.sys.sunrise).format()
-      const sunset = moment(dateTimeSet).format('LT')
-      const sunrise = moment(dateTimeRise).format('LT')
+      const sunsetTzOffset = moment.utc("1970-01-01T00:00:00").add(this.props.data.weather.sys.sunset, 'seconds').format();
+      const sunriseTzOffset = moment.utc("1970-01-01T00:00:00").add(this.props.data.weather.sys.sunrise, 'seconds').format();
+
+      const sunset = moment(sunsetTzOffset).format("h:mm a");
+      const sunrise = moment(sunriseTzOffset).format("h:mm a");
       return (
         <div className= "sunsetSunrise">
-          <div id="sunset">
-            <h6>Sunset</h6>
-            <p>{sunset}</p>
-          </div>
           <div id="sunrise">
             <h6>Sunrise</h6>
             <p>{sunrise}</p>
+          </div>
+          <div id="sunset">
+            <h6>Sunset</h6>
+            <p>{sunset}</p>
           </div>
         </div>
       )
