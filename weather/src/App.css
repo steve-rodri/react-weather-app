@@ -16,24 +16,24 @@
 }
 
 input {
-  font-size: 20px;
+  font-size: 3vh;
   font-family: sans-serif;
   height: 6vh;
-  width: 20vh;
-  border-radius: 4px 0 0 4px;
-  border: 2px solid white;
+  width: 45vh;
+  border-radius: .25vh 0 0 .25vh;
+  border: .35vh solid white;
 }
 
 #submit {
   height: 7vh;
-  width: 10vh;
-  border-radius: 0 4px 4px 0 ;
-  /* border-top: 2px solid white;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  border-left: 0px; */
+  width: 15vh;
+  border-radius: 0 .25vh .25vh 0 ;
+  border-top: 1vh solid rgba(127,255,127,1);
+  border-right: 1vh solid rgba(127,255,127,1);
+  border-bottom: 1vh solid rgba(127,255,127,1);
+  border-left: 0px;
   font-family: inherit;
-  font-size: 2vh;
+  font-size: 2.75vh;
   font-weight: bold;
   background: rgba(127,255,127,1);
 }
@@ -60,7 +60,8 @@ position: relative;
   "unitcity  unitcity"
   "temp  temp"
   "condition  condition"
-  "minMax  sun"
+  "minMax  minMax"
+  "sun sun"
   ;
 }
 
@@ -73,8 +74,8 @@ position: relative;
   grid-area: unitcity;
   align-self: start;
   justify-self: end;
-  border: 1px solid lightgreen;
-  border-radius: 0 0 0 7px;
+  border: 0px solid lightgreen;
+  border-radius: 0 0 0 .25vh;
 }
 
 #city {
@@ -87,13 +88,21 @@ position: relative;
 .temp {
   grid-area: temp;
   font-size: 15vh;
-  display:flex;
+  display: flex;
   justify-content: center;
+  align-items: center;
+
 }
 
-#cushion {
-  grid-area: temp;
-  padding-left: 15%;
+.tempNumber {
+  position: relative;
+  display: flex;
+}
+
+.degreeMark {
+  position:absolute;
+  top: 0%;
+  right: -35%;
 }
 
 #condition {
@@ -109,7 +118,6 @@ position: relative;
   display:flex;
   justify-content: space-around;
   align-items: start;
-  font-size: 2.5vh;
 }
 
 .sunsetSunrise {
@@ -117,5 +125,12 @@ position: relative;
   display: flex;
   justify-content: space-around;
   align-items: start;
-  font-size: 2.5vh;
+}
+
+h6 {
+font-size: 2vh;
+}
+
+p {
+font-size: 4vh;
 }

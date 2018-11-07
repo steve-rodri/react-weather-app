@@ -19,7 +19,6 @@ class Main extends Component {
     this.pressure = this.pressure.bind(this);
     this.precipitation = this.precipitation.bind(this);
     this.windSpeed = this.windSpeed.bind(this);
-    this.background = this.background.bind(this);
   }
 
   dataAvail(){
@@ -33,8 +32,6 @@ class Main extends Component {
       this.props.data.weather.name
     )
   }
-
-
 
   handleClick = (e) => {
     this.setState({
@@ -59,15 +56,17 @@ class Main extends Component {
       if (this.state.unitIsFahrenheit) {
         return (
           <div className="temp">
-            <div id="cushion"></div>
-            {Math.round(this.kelvinToFahrenheit(this.props.data.weather.main.temp))+"˚"}
+            <div className="tempNumber">{Math.round(this.kelvinToFahrenheit(this.props.data.weather.main.temp))}
+              <div className="degreeMark">˚</div>
+            </div>
           </div>
         )
       } else {
         return (
           <div className="temp">
-            <div id="cushion"></div>
-            {Math.round(this.kelvinToCelsius(this.props.data.weather.main.temp))+"˚"}
+            <div className="tempNumber">{Math.round(this.kelvinToCelsius(this.props.data.weather.main.temp))}
+              <div className="degreeMark">˚</div>
+            </div>
           </div>
 
         )
@@ -90,17 +89,18 @@ class Main extends Component {
         <div className= "minMax">
           <div id="max">
             <h6>High</h6>
-            <p>{max +"˚"}</p>
+            <p className="tempNumber">{max} <div className="degreeMark">˚</div> </p>
           </div>
           <div id="min">
             <h6>Low</h6>
-            <p>{min +"˚"}</p>
+            <p className="tempNumber">{min} <div className="degreeMark">˚</div></p>
           </div>
         </div>
       )
 
     }
   }
+
   sunsetSunrise(){
     if (this.dataAvail()) {
       const sunsetTzOffset = moment.utc("1970-01-01T00:00:00").add(this.props.data.weather.sys.sunset, 'seconds').format();
@@ -122,6 +122,7 @@ class Main extends Component {
       )
     }
   }
+
   condition () {
     if (this.dataAvail()) {
       const weather = this.props.data.weather.weather;
@@ -164,15 +165,26 @@ class Main extends Component {
   precipitation(){
     if (this.dataAvail()) {
       const rain = this.props.data.weather.rain
-      const rate = rain["1h"];
-      return(
-        <div className= "precipitation">
-          <div id="max">
-            <h6>Precipiation</h6>
-            <p>{(rate*100)+"%"}</p>
+      if (rain) {
+        const rate = rain["1h"];
+        return(
+          <div className= "precipitation">
+            <div id="max">
+              <h6>Precipiation</h6>
+              <p>{(Math.round(rate*100))+"%"}</p>
+            </div>
           </div>
-        </div>
-      )
+        )
+      } else {
+        return (
+          <div className= "precipitation">
+            <div id="max">
+              <h6>Precipiation</h6>
+              <p>{(0)+"%"}</p>
+            </div>
+          </div>
+        )
+      }
     }
   }
 
@@ -189,36 +201,30 @@ class Main extends Component {
     }
   }
 
-  background(){
-    if (this.dataAvail()) {
-      const weather = this.props.data.weather.weather;
-      const weatherCondition = weather[0];
-      let background;
-      switch (weatherCondition.main) {
-        case "Clear":
-          debugger;
-          background = "../images/clear_sky.jpeg"
-          break;
-        case "Rain":
-          background = "../images/rain.jpeg"
-          break;
-        case "Snow":
-          background = "../images/snow.jpeg"
-          break;
-        }
-
-      return (
-        <img src={background} id="background"/>
-      )
-    }
-  }
+  // background(){
+  //   if (this.dataAvail()) {
+  //     const weather = this.props.data.weather.weather;
+  //     const weatherCondition = weather[0];
+  //     switch (weatherCondition.main) {
+  //       case "Clear":
+  //         debugger;
+  //         return "../images/clear_sky.jpeg"
+  //         break;
+  //       case "Rain":
+  //         return  "../images/rain.jpeg"
+  //         break;
+  //       case "Snow":
+  //         return "../images/snow.jpeg"
+  //         break;
+  //     }
+  //   }
+  // }
 
   render(){
     return(
-      <div className="Main">
-
-
-        {/* {this.background()} */}
+      <div
+        className="Main"
+      >
 
         <div className="grid">
 
